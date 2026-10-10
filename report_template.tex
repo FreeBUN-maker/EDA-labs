@@ -1,0 +1,50 @@
+% !TeX program = xelatex
+% Compile twice with XeLaTeX, or once with tectonic.
+\documentclass[UTF8,a4paper,11pt,fontset=fandol]{ctexart}
+\usepackage[margin=1.8cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsmath,booktabs,longtable,array,tabularx,xcolor,listings}
+\usepackage{caption}
+\usepackage{graphicx,float}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage{xurl}
+\hypersetup{pdftitle={Lab 0 实验报告：使用 OpenROAD 自动完成芯片设计},pdfauthor={}}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\emergencystretch}{2em}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\missing}{---}
+\newcommand{\derived}[1]{#1\textsuperscript{\(\dagger\)}}
+\newcommand{\inherited}{0\textsuperscript{*}}
+\newcommand{\groupbar}[2]{\midrule\multicolumn{#1}{l}{\bfseries #2}\\\midrule}
+\captionsetup{font=small,labelfont=bf}
+\lstdefinestyle{script}{language=Python,basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue!60!black},commentstyle=\color{green!35!black},
+  stringstyle=\color{red!45!black},numbers=left,numberstyle=\tiny\color{gray},
+  numbersep=6pt,breaklines=true,breakatwhitespace=false,
+  columns=fullflexible,keepspaces=true,showstringspaces=false,
+  frame=single,rulecolor=\color{gray!40},xleftmargin=1.7em,
+  aboveskip=0.8em,belowskip=0.8em,tabsize=4}
+
+\title{Lab X 实验报告\\\large 标  题}
+\author{Tongbin Zhao\\学号：2300012831}
+\date{2026.9.15}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+\vspace{-2.5em}
+
+综述：本报告回答。。。问题，并阐述如何设计。。。算法bilibala....
+
+\section{问题 1：XXX}
+
+\section{问题 2：XXX}
+
+\newpage
+\appendix{附录：AI使用记录}
+
+\end{document}

@@ -1,0 +1,83 @@
+% !TeX program = xelatex
+% Compile twice with XeLaTeX, or once with tectonic.
+\documentclass[UTF8,a4paper,11pt,fontset=fandol]{ctexart}
+\usepackage[margin=1.8cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{amsmath,booktabs,longtable,array,tabularx,xcolor,listings}
+\usepackage{caption}
+\usepackage{graphicx,float}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage{xurl}
+
+% 布尔运算快捷命令（与 HW1_problem.pdf 的符号一致，在数学模式中使用）
+\newcommand{\AND}{\land}              % 与：a \AND b
+\newcommand{\OR}{\lor}                % 或：a \OR b
+\newcommand{\XOR}{\oplus}             % 异或：a \XOR b
+\newcommand{\NOT}{\neg}               % 非：\NOT a；对整个表达式取反时用 \NOT(a \AND b)
+\newcommand{\NAND}{\mathbin{\dagger}} % 与非：a \NAND b
+% 示例：\(f = (a \AND d) \OR (b \AND c \AND d) \OR (a \AND c)\)
+% 示例：\(a \NAND b = \NOT(a \AND b)\)
+% 示例：\(D_x f = f(x=0,\mathbf{u}) \XOR f(x=1,\mathbf{u})\)
+
+\hypersetup{pdftitle={hw1_2300012831},pdfauthor={Tongbin Zhao}}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.25em}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\emergencystretch}{2em}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+\newcommand{\missing}{---}
+\newcommand{\derived}[1]{#1\textsuperscript{\(\dagger\)}}
+\newcommand{\inherited}{0\textsuperscript{*}}
+\newcommand{\groupbar}[2]{\midrule\multicolumn{#1}{l}{\bfseries #2}\\\midrule}
+\captionsetup{font=small,labelfont=bf}
+\lstdefinestyle{script}{language=Python,basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue!60!black},commentstyle=\color{green!35!black},
+  stringstyle=\color{red!45!black},numbers=left,numberstyle=\tiny\color{gray},
+  numbersep=6pt,breaklines=true,breakatwhitespace=false,
+  columns=fullflexible,keepspaces=true,showstringspaces=false,
+  frame=single,rulecolor=\color{gray!40},xleftmargin=1.7em,
+  aboveskip=0.8em,belowskip=0.8em,tabsize=4}
+
+\title{HW1 实验报告\\\large Logic Synthesis}
+\author{Tongbin Zhao\\学号：2300012831}
+\date{2026.10.8}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+\vspace{-2.5em}
+
+本报告回答 \boldsymbol{Problem 1}和\boldsymbol{Problem 2}中的问题，并介绍\boldsymbol{Problem 3}的算法设计思路
+
+\section{Problem 1}
+\boldsymbol{Prove:}
+\[
+\begin{aligned}
+D_x\left(f \AND g\right) 
+    &= \left(f \AND g\right)\left(x=1, \boldsymbol{u}\right) \XOR \left(f \AND g\right)\left(x=0, \boldsymbol{u}\right) \\
+    &= \left(f\left(x=1, \boldsymbol{u}\right) \AND g\left(x=1, \boldsymbol{u}\right)\right) \XOR \left(f\left(x=0, \boldsymbol{u}\right) \AND g\left(x=0, \boldsymbol{u}\right)\right) \\
+\end{aligned}
+\]
+Because
+\[
+A \XOR B = \NOT A \AND B \OR \NOT B \AND A
+\]
+So
+\[
+\begin{aligned}
+D_x\left(f \AND g\right)
+    &= \left(\NOT f\left(x=1, \boldsymbol{u}\right) \OR \NOT g\left(x=1, \boldsymbol{u}\right\right)\right) \AND f\left(x=0, \boldsymbol{u}\right) \AND g\left(x=0, \boldsymbol{u}\right) \\
+    &\quad \OR \left(\NOT f\left(x=0, \boldsymbol{u}\right) \OR \NOT g\left(x=0, \boldsymbol{u}\right\right)\right) \AND f\left(x=1, \boldsymbol{u}\right) \AND g\left(x=1, \boldsymbol{u}\right) \\
+    &= 
+\end{aligned}
+\]
+
+
+\section{问题 2：XXX}
+
+\newpage
+\appendix{附录：AI使用记录}
+
+\end{document}

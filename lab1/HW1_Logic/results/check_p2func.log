@@ -1,0 +1,5 @@
+$ /home/freebun/Program/miniconda3/bin/python3 /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/check.py --aag /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_p2func.aag --lib /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/lib.json --golden /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_p2func_golden.json --net /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/mapped_p2func.blif --report /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/report_p2func.json
+subj_p2func: 3 cells, area 0.26244 (threshold 0.2704)
+  and2   x1
+  ao21   x2
+PASS

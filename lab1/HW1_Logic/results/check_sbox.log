@@ -1,0 +1,18 @@
+$ /home/freebun/Program/miniconda3/bin/python3 /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/check.py --aag /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_sbox.aag --lib /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/lib.json --golden /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_sbox_golden.json --net /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/mapped_sbox.blif --report /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/report_sbox.json
+subj_sbox: 548 cells, area 50.81130 (threshold 52.3207)
+  and2   x3
+  and3   x49
+  ao21   x125
+  ao22   x11
+  aoi21  x17
+  aoi22  x9
+  inv1   x82
+  nand2  x26
+  nor2   x30
+  nor3   x3
+  oa21   x83
+  oai21  x68
+  oai22  x25
+  or2    x16
+  xnor2  x1
+PASS

@@ -1,0 +1,4 @@
+# Local ABC source copy and build products.
+/tools/
+__pycache__/
+/HW1_Logic/results/abc.history

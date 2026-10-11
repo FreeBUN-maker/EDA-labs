@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""HW1 P3 skeleton: technology mapping by tree covering.
+"""HW1 P3: technology mapping by tree covering.
 
     python3 map.py <subject.aag> <lib.json> -o mapped.blif -r report.json
 
@@ -7,9 +7,9 @@ The pipeline is already wired in main():
 
     load subject graph (aig.py, shipped)
       -> load library (lib.json)
-      -> enumerate pattern-tree matches at every AIG node   (you)
-      -> dual-polarity dynamic-programming cover            (you)
-      -> emit the mapped netlist                            (you)
+      -> enumerate pattern-tree matches at every AIG node
+      -> dual-polarity dynamic-programming cover
+      -> emit the mapped netlist
 
 Contractual artifacts:
 
@@ -20,8 +20,7 @@ Contractual artifacts:
     report.json   {"area": <float>, "cells": <int>,
                    "gates": {<gname>: <count>, ...}}
 
-The stubs below carry their contracts. You may build on this file or
-write your own; only the command line and the artifacts are contractual.
+The functions below document the matching, covering, and output contracts.
 """
 
 import argparse
@@ -76,7 +75,39 @@ def matches_at(gate, var, subj):
     Gates whose pattern is a bare {"leaf": ...} (inv1) match any node and
     are handled in cover(), not here.
     """
-    raise NotImplementedError("pattern-tree matching")
+    if "leaf" in gate["pattern"]:
+        return
+
+    def match_edge(edge, subject_lit, binds):
+        node = edge["node"]
+        if "leaf" in node:
+            pin = node["leaf"]
+            # Undo the inverter inside the pattern to obtain the pin's net.
+            bound = subject_lit ^ int(edge["inv"])
+            if pin in binds:
+                if binds[pin] == bound:
+                    yield binds
+            else:
+                yield {**binds, pin: bound}
+        elif lit_inv(subject_lit) == int(edge["inv"]):
+            yield from match_node(node, lit_var(subject_lit), binds)
+
+    def match_node(node, subject_var, binds):
+        if subject_var not in subj.ands:
+            return
+        left, right = node["and"]
+        a, b = subj.ands[subject_var]
+        # Keep the AAG child order first for deterministic tie breaking.
+        for first, second in ((a, b), (b, a)):
+            for partial in match_edge(left, first, binds):
+                yield from match_edge(right, second, partial)
+
+    seen = set()
+    for binds in match_node(gate["pattern"], var, {}):
+        key = tuple(binds[pin] for pin in gate["pins"])
+        if key not in seen:
+            seen.add(key)
+            yield binds
 
 
 # ------------------------------------------------------------- covering
@@ -110,7 +141,42 @@ def cover(subj, gates):
                                       distinct leaf literals it
                                       requires, `gate` the gate record.
     """
-    raise NotImplementedError("dual-polarity DP cover")
+    inv_area = next(g["area"] for g in gates if g["name"] == "inv1")
+    pattern_gates = [g for g in gates if "and" in g["pattern"]]
+    cost, choice = {}, {}
+    for input_lit, _ in subj.inputs:
+        v = lit_var(input_lit)
+        cost[v] = [0.0, inv_area]
+        choice[v] = [None, ("inv",)]
+
+    for v in subj.order:
+        direct = [float("inf"), float("inf")]
+        selected = [None, None]
+        for gate in pattern_gates:
+            p = int(gate["out_inv"])
+            for binds in matches_at(gate, v, subj):
+                # Different pins can consume the same literal; pay only once.
+                # Dict insertion order preserves the match's leaf order.
+                lits = list(dict.fromkeys(binds.values()))
+                area = gate["area"] + sum(
+                    cost[lit_var(l)][lit_inv(l)] for l in lits)
+                if area < direct[p]:
+                    direct[p] = area
+                    selected[p] = ("gate", binds, lits, gate)
+
+        cost[v] = direct.copy()
+        choice[v] = selected
+        # Both routes use the original direct costs, not a just-relaxed cost.
+        # With positive inverter area this cannot create an inverter cycle.
+        for p in (0, 1):
+            inverted = inv_area + direct[1 - p]
+            if inverted < cost[v][p]:
+                cost[v][p] = inverted
+                choice[v][p] = ("inv",)
+        if all(ch is None for ch in choice[v]):
+            raise ValueError(f"no library cover for AIG node {v}")
+
+    return cost, choice
 
 
 # ------------------------------------------------------------------ emit

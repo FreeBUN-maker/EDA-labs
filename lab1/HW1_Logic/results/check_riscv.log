@@ -1,0 +1,18 @@
+$ /home/freebun/Program/miniconda3/bin/python3 /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/check.py --aag /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_riscv.aag --lib /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/lib.json --golden /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_riscv_golden.json --net /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/mapped_riscv.blif --report /home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/report_riscv.json
+subj_riscv: 1277 cells, area 118.92906 (threshold 122.542)
+  and3   x144
+  ao21   x281
+  ao22   x105
+  aoi21  x22
+  aoi22  x28
+  inv1   x225
+  nand2  x97
+  nor2   x52
+  nor3   x8
+  oa21   x129
+  oai21  x48
+  oai22  x74
+  or2    x41
+  xnor2  x12
+  xor2   x11
+PASS

@@ -53,26 +53,7 @@
 
 \section{Problem 1}
 \boldsymbol{Prove:}
-\[
-\begin{aligned}
-D_x\left(f \AND g\right) 
-    &= \left(f \AND g\right)\left(x=1, \boldsymbol{u}\right) \XOR \left(f \AND g\right)\left(x=0, \boldsymbol{u}\right) \\
-    &= \left(f\left(x=1, \boldsymbol{u}\right) \AND g\left(x=1, \boldsymbol{u}\right)\right) \XOR \left(f\left(x=0, \boldsymbol{u}\right) \AND g\left(x=0, \boldsymbol{u}\right)\right) \\
-\end{aligned}
-\]
-Because
-\[
-A \XOR B = \NOT A \AND B \OR \NOT B \AND A
-\]
-So
-\[
-\begin{aligned}
-D_x\left(f \AND g\right)
-    &= \left(\NOT f\left(x=1, \boldsymbol{u}\right) \OR \NOT g\left(x=1, \boldsymbol{u}\right\right)\right) \AND f\left(x=0, \boldsymbol{u}\right) \AND g\left(x=0, \boldsymbol{u}\right) \\
-    &\quad \OR \left(\NOT f\left(x=0, \boldsymbol{u}\right) \OR \NOT g\left(x=0, \boldsymbol{u}\right\right)\right) \AND f\left(x=1, \boldsymbol{u}\right) \AND g\left(x=1, \boldsymbol{u}\right) \\
-    &= 
-\end{aligned}
-\]
+
 
 
 \section{Problem 2}
@@ -80,7 +61,15 @@ D_x\left(f \AND g\right)
 
 
 \section{Problem 3}
+\subsection{(a)}
+答：(i) 因为在 2(c) 中，PI节点是免费的，而Treeifying刚好可以通过复制输入节点来完成，因此没有面积开销。而在一个树上，每个子树的
+最优解完全不收其前驱和其他子树的mapping方案的影响，因此用DP就可以得到最优解。
 
+(ii) 在DAG上直接运行Tree Covering算法得到的不是最优解，因为一棵子树的根节点map到的pattern tree可能中间有一些节点会cover到别的
+子树的节点上，即每个子树的mapping问题不是完全解耦的，因此用DP就无法求得全局最优
+
+(iii) 首先，有些pattern tree中自带complement edge的门，其面积开销小于将反相边全部用inv1实现后，再给剩下的节点进行tree covering
+得到的总面积。这些情况下如果还用一个inv1来cover这个complement edge，会导致这个局部得不到最优解
 
 \newpage
 \appendix{附录：AI使用记录}

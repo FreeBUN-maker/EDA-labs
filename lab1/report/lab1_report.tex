@@ -1,77 +1,140 @@
 % !TeX program = xelatex
-% Compile twice with XeLaTeX, or once with tectonic.
+% Compile from this directory: latexmk -xelatex -interaction=nonstopmode -halt-on-error lab1_report.tex
 \documentclass[UTF8,a4paper,11pt,fontset=fandol]{ctexart}
-\usepackage[margin=1.8cm,top=2cm,bottom=2cm]{geometry}
-\usepackage{amsmath,booktabs,longtable,array,tabularx,xcolor,listings}
-\usepackage{caption}
-\usepackage{graphicx,float}
-\usepackage[unicode,colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\usepackage[left=20mm,right=20mm,top=19mm,bottom=18mm,
+  includeheadfoot,headheight=15pt,headsep=9mm,footskip=9mm]{geometry}
+\usepackage{amsmath,amssymb,booktabs,tabularx,xcolor}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{fancyhdr,lastpage}
 \usepackage{xurl}
+\usepackage[unicode,colorlinks=true,linkcolor=blue!45!black,
+  urlcolor=blue!45!black]{hyperref}
+\usepackage{bookmark}
 
-% 布尔运算快捷命令（与 HW1_problem.pdf 的符号一致，在数学模式中使用）
-\newcommand{\AND}{\land}              % 与：a \AND b
-\newcommand{\OR}{\lor}                % 或：a \OR b
-\newcommand{\XOR}{\oplus}             % 异或：a \XOR b
-\newcommand{\NOT}{\neg}               % 非：\NOT a；对整个表达式取反时用 \NOT(a \AND b)
-\newcommand{\NAND}{\mathbin{\dagger}} % 与非：a \NAND b
-% 示例：\(f = (a \AND d) \OR (b \AND c \AND d) \OR (a \AND c)\)
-% 示例：\(a \NAND b = \NOT(a \AND b)\)
-% 示例：\(D_x f = f(x=0,\mathbf{u}) \XOR f(x=1,\mathbf{u})\)
+% 保留手写原稿：直接嵌入 PDF 页面，仅裁去空白或按题目分段显示。
+\graphicspath{{assets/}}
+\definecolor{reportblue}{HTML}{25465F}
+\definecolor{reportgray}{HTML}{666666}
+\hypersetup{
+  pdftitle={HW1 Logic Synthesis - 2300012831},
+  pdfauthor={Tongbin Zhao},
+  pdfsubject={Logic Synthesis homework report},
+  bookmarksnumbered=false
+}
 
-\hypersetup{pdftitle={hw1_2300012831},pdfauthor={Tongbin Zhao}}
+\setcounter{secnumdepth}{0}
+\ctexset{
+  section={format=\Large\bfseries\color{reportblue},
+    beforeskip=1.0em,afterskip=0.65em},
+  subsection={format=\normalsize\bfseries,
+    beforeskip=0.9em,afterskip=0.45em}
+}
 \setlength{\parindent}{2em}
-\setlength{\parskip}{0.25em}
-\setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{1.2}
+\setlength{\parskip}{0.35em}
 \setlength{\emergencystretch}{2em}
-\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
-\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
-\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
-\newcommand{\missing}{---}
-\newcommand{\derived}[1]{#1\textsuperscript{\(\dagger\)}}
-\newcommand{\inherited}{0\textsuperscript{*}}
-\newcommand{\groupbar}[2]{\midrule\multicolumn{#1}{l}{\bfseries #2}\\\midrule}
-\captionsetup{font=small,labelfont=bf}
-\lstdefinestyle{script}{language=Python,basicstyle=\ttfamily\footnotesize,
-  keywordstyle=\color{blue!60!black},commentstyle=\color{green!35!black},
-  stringstyle=\color{red!45!black},numbers=left,numberstyle=\tiny\color{gray},
-  numbersep=6pt,breaklines=true,breakatwhitespace=false,
-  columns=fullflexible,keepspaces=true,showstringspaces=false,
-  frame=single,rulecolor=\color{gray!40},xleftmargin=1.7em,
-  aboveskip=0.8em,belowskip=0.8em,tabsize=4}
+\renewcommand{\arraystretch}{1.2}
+\setlist[enumerate]{leftmargin=2.8em,labelsep=0.6em,
+  itemsep=0.8em,topsep=0.5em,parsep=0.25em}
 
-\title{HW1 实验报告\\\large Logic Synthesis}
-\author{Tongbin Zhao\\学号：2300012831}
-\date{2026.10.8}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{reportgray}HW1\enspace Logic Synthesis}
+\fancyhead[R]{\small\color{reportgray}Tongbin Zhao\enspace /\enspace 2300012831}
+\fancyfoot[C]{\small\color{reportgray}\thepage\ /\ \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% 布尔运算快捷命令。
+\newcommand{\AND}{\land}
+\newcommand{\OR}{\lor}
+\newcommand{\XOR}{\oplus}
+\newcommand{\NOT}{\neg}
+\newcommand{\NAND}{\mathbin{\dagger}}
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+
+% 参数依次为原 PDF 页码、裁切量（左 下 右 上）、最大显示高度。
+% keepaspectratio 保证手写文字和电路图不发生拉伸。
+\newcommand{\handwritten}[3]{%
+  \par\noindent\makebox[\linewidth][c]{%
+    \includegraphics[page=#1,trim={#2},clip,
+      width=\linewidth,height=#3,keepaspectratio]{HW1.pdf}}\par
+}
+\newcommand{\sourcenote}[1]{%
+  {\centering\scriptsize\color{reportgray}#1\par}
+}
 
 \begin{document}
-\pagestyle{plain}
-\maketitle
-\vspace{-2.5em}
 
-本报告回答 \boldsymbol{Problem 1}和\boldsymbol{Problem 2}中的问题，并介绍\boldsymbol{Problem 3}的算法设计思路
+\begin{center}
+  {\LARGE\bfseries HW1 实验报告}\par
+  \vspace{0.2em}
+  {\large\color{reportblue}Logic Synthesis}\par
+  \vspace{0.65em}
+  {\small Tongbin Zhao\quad 学号：2300012831\quad 2026 年 10 月 8 日}
+\end{center}
+\vspace{-0.35em}
 
-\section{Problem 1}
-\boldsymbol{Prove:}
+\section{Problem 1：布尔差分}
+% 原稿第 1 页：保留完整证明过程；续页接在下一页上方。
+\handwritten{1}{16bp 22bp 10bp 30bp}{0.76\textheight}
+\sourcenote{手写解答 · 原稿第 1 页（续见下一页）}
 
+\clearpage
+\noindent{\large\bfseries\color{reportblue}Problem 1（续）}\par
+\vspace{0.5em}
+% 原稿第 2 页上半部：x=1 的情形及证明结论。
+\handwritten{2}{16bp 398bp 0bp 12bp}{0.32\textheight}
+\sourcenote{手写解答 · 原稿第 2 页上半部}
 
+\section{Problem 2：工艺映射与树覆盖}
+% 同页下半部从 Problem 2 标题开始；空白分隔带不重复显示。
+\handwritten{2}{16bp 10bp 0bp 273bp}{0.53\textheight}
+\sourcenote{手写解答 · 原稿第 2 页下半部}
 
-\section{Problem 2}
-\boldsymbol{To be completed}
+\clearpage
+\noindent{\large\bfseries\color{reportblue}Problem 2（续）}\par
+\vspace{0.5em}
+% 原稿第 3 页包含 (b) 的续式，以及 (c) 的电路图和门数统计。
+% 右侧红色批注靠近页边，保留完整页面宽度。
+\handwritten{3}{0bp 142bp 0bp 0bp}{0.82\textheight}
+\sourcenote{手写解答 · 原稿第 3 页}
 
+% 原稿第 4 页为未完成的补充草稿；正式答案使用第 1--3 页。
+% 如需收录第 4 页，可在此处另页加入 \handwritten{4}{0bp 0bp 0bp 0bp}{0.9\textheight}。
 
-\section{Problem 3}
-\subsection{(a)}
-答：(i) 因为在 2(c) 中，PI节点是免费的，而Treeifying刚好可以通过复制输入节点来完成，因此没有面积开销。而在一个树上，每个子树的
-最优解完全不收其前驱和其他子树的mapping方案的影响，因此用DP就可以得到最优解。
+\clearpage
+\section{Problem 3：Tree Covering 算法}
+\subsection{(a) 算法设计思路}
 
-(ii) 在DAG上直接运行Tree Covering算法得到的不是最优解，因为一棵子树的根节点map到的pattern tree可能中间有一些节点会cover到别的
-子树的节点上，即每个子树的mapping问题不是完全解耦的，因此用DP就无法求得全局最优
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{树上的最优性。}
+  在 Problem 2(c) 中，主输入（PI）节点是免费的，而该例的树化
+  （treeifying）可以通过复制输入节点完成，因此没有额外面积开销。
+  在一棵树上，各子树的最优解不受其上层节点和其他子树映射方案的影响，
+  因此可以通过动态规划（DP）得到最优的树覆盖。
 
-(iii) 首先，有些pattern tree中自带complement edge的门，其面积开销小于将反相边全部用inv1实现后，再给剩下的节点进行tree covering
-得到的总面积。这些情况下如果还用一个inv1来cover这个complement edge，会导致这个局部得不到最优解
+  \item \textbf{DAG 上的共享与最优性。}
+  在 DAG 上直接运行 tree covering 算法不保证得到全局最优解。
+  一棵子树根节点匹配到的 pattern tree，可能覆盖其他分支也会使用的节点。
+  因而各子问题之间存在共享，映射问题不再完全解耦，
+  独立求解各子问题的 DP 无法保证全局最优。
 
-\newpage
-\appendix{附录：AI使用记录}
+  \item \textbf{同时跟踪两种极性的作用。}
+  有些库门的 pattern tree 自带反相边，其面积小于先将反相边全部用
+  \code{inv1} 实现、再对剩余节点进行 tree covering 的总面积。
+  如果对每条反相边都固定插入一个 \code{inv1}，就可能错过更便宜的局部覆盖方案。
+\end{enumerate}
+
+\vspace{1.0em}
+\section{附录：AI 使用记录}
+本次作业使用 AI 辅助完成了以下工作：
+\begin{itemize}[leftmargin=2em,itemsep=0.35em,topsep=0.4em]
+  \item 检查 Problem 3 的 两个函数，帮助笔者进行debug
+    并使用附带检查器及 ABC 完成四个测试电路的评估。
+  \item 讨论 tree covering 在 DAG 上的适用方式，以及共享逻辑对面积最优性的影响。
+  \item 将本人手写的 Problem 1、Problem 2 解答嵌入报告，
+    整理 LaTeX 排版并编译导出 PDF。
+\end{itemize}
 
 \end{document}

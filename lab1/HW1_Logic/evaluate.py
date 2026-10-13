@@ -4,10 +4,10 @@
 import argparse
 from collections import Counter
 import json
+import os
 from pathlib import Path
 import re
 import shlex
-import shutil
 import subprocess
 import sys
 
@@ -16,22 +16,6 @@ from check import THRESHOLDS, parse_blif
 
 HERE = Path(__file__).resolve().parent
 SUBJECTS = ("p2func", "alu4", "sbox", "riscv")
-
-
-def find_abc(explicit):
-    if explicit:
-        candidates = [explicit]
-    else:
-        orfs = HERE.parent.parent / "OpenROAD-flow-scripts"
-        candidates = [HERE.parent / "tools/abc/abc",
-                      orfs / "tools/install/yosys/bin/yosys-abc",
-                      orfs / "tools/yosys/abc/abc", "yosys-abc", "abc"]
-    for candidate in candidates:
-        found = shutil.which(str(candidate))
-        if found:
-            return str(Path(found).resolve())
-    raise RuntimeError("ABC not found; run bash lab1/HW1_Logic/build_abc.sh "
-                       "from the repository root, or supply --abc /path/to/abc")
 
 
 def run(command, log, cwd):
@@ -53,10 +37,15 @@ def abc_quote(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--abc", help="ABC or yosys-abc executable")
-    parser.add_argument("--output-dir", type=Path, default=HERE / "results")
+    parser.add_argument("--abc", type=Path, required=True,
+                        help="path to an ABC or yosys-abc executable")
+    parser.add_argument("--output-dir", type=Path, required=True,
+                        help="directory for netlists, reports, and logs")
     args = parser.parse_args()
-    abc = find_abc(args.abc)
+    abc_path = args.abc.resolve()
+    if not abc_path.is_file() or not os.access(abc_path, os.X_OK):
+        parser.error(f"ABC executable is missing or not executable: {abc_path}")
+    abc = str(abc_path)
     out = args.output_dir.resolve()
     out.mkdir(parents=True, exist_ok=True)
     # A failed rerun must not leave a stale all-passed summary.

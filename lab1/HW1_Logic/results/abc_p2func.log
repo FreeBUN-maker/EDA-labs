@@ -1,6 +1,0 @@
-$ /home/freebun/Desktop/EDA-labs/lab1/tools/abc/abc -s -c 'read "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/lib.genlib"; read_blif "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/mapped_p2func.blif"; cec "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_p2func.aig"; print_stats'
-======== ABC command line "read "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/lib.genlib"; read_blif "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/mapped_p2func.blif"; cec "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_p2func.aig"; print_stats"
-Warnings: genlib library reader cannot detect the buffer gate.
-Some parts of the supergate-based technology mapper may not work correctly.
-Networks are equivalent after structural hashing.  Time =     0.00 sec
-[1;37mmapped_p2func                 :[0m i/o =    4/    1  lat =    0  nd =     3  edge =      8  area = 0.26  delay = 2.00  lev = 2

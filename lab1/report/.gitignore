@@ -1,0 +1,7 @@
+/.preview/
+/*.fdb_latexmk
+/*.fls
+/*.xdv
+/*.log
+/*.out
+/*.synctex.gz

@@ -1,0 +1,844 @@
+{
+ "name": "asap7-mini",
+ "gates": [
+  {
+   "name": "inv1",
+   "asap7": "INVx1_ASAP7_75t_R",
+   "area": 0.04374,
+   "func": "!a",
+   "pins": [
+    "a"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "leaf": "a"
+   }
+  },
+  {
+   "name": "nand2",
+   "asap7": "NAND2x1_ASAP7_75t_R",
+   "area": 0.08748,
+   "func": "!(a*b)",
+   "pins": [
+    "a",
+    "b"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": false,
+      "node": {
+       "leaf": "a"
+      }
+     },
+     {
+      "inv": false,
+      "node": {
+       "leaf": "b"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "nand3",
+   "asap7": "NAND3x1_ASAP7_75t_R",
+   "area": 0.16038,
+   "func": "!(a*b*c)",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": false,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": false,
+      "node": {
+       "leaf": "c"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "nor2",
+   "asap7": "NOR2x1_ASAP7_75t_R",
+   "area": 0.08748,
+   "func": "!(a+b)",
+   "pins": [
+    "a",
+    "b"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "leaf": "a"
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "leaf": "b"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "nor3",
+   "asap7": "NOR3x1_ASAP7_75t_R",
+   "area": 0.16038,
+   "func": "!(a+b+c)",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": false,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "leaf": "c"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "and2",
+   "asap7": "AND2x2_ASAP7_75t_R",
+   "area": 0.08748,
+   "func": "a*b",
+   "pins": [
+    "a",
+    "b"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": false,
+      "node": {
+       "leaf": "a"
+      }
+     },
+     {
+      "inv": false,
+      "node": {
+       "leaf": "b"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "and3",
+   "asap7": "AND3x1_ASAP7_75t_R",
+   "area": 0.08748,
+   "func": "a*b*c",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": false,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": false,
+      "node": {
+       "leaf": "c"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "or2",
+   "asap7": "OR2x2_ASAP7_75t_R",
+   "area": 0.08748,
+   "func": "a+b",
+   "pins": [
+    "a",
+    "b"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "leaf": "a"
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "leaf": "b"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "xor2",
+   "asap7": "XOR2x1_ASAP7_75t_R",
+   "area": 0.17496,
+   "func": "a^b",
+   "pins": [
+    "a",
+    "b"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "xnor2",
+   "asap7": "XNOR2x1_ASAP7_75t_R",
+   "area": 0.17496,
+   "func": "!(a^b)",
+   "pins": [
+    "a",
+    "b"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "aoi21",
+   "asap7": "AOI21x1_ASAP7_75t_R",
+   "area": 0.11664,
+   "func": "!(a*b+c)",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "leaf": "c"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "aoi22",
+   "asap7": "AOI22x1_ASAP7_75t_R",
+   "area": 0.1458,
+   "func": "!(a*b+c*d)",
+   "pins": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "c"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "d"
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "oai21",
+   "asap7": "OAI21x1_ASAP7_75t_R",
+   "area": 0.11664,
+   "func": "!((a+b)*c)",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": false,
+      "node": {
+       "leaf": "c"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "oai22",
+   "asap7": "OAI22x1_ASAP7_75t_R",
+   "area": 0.1458,
+   "func": "!((a+b)*(c+d))",
+   "pins": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "leaf": "c"
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "leaf": "d"
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "ao21",
+   "asap7": "AO21x1_ASAP7_75t_R",
+   "area": 0.08748,
+   "func": "a*b+c",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "leaf": "c"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "oa21",
+   "asap7": "OA21x2_ASAP7_75t_R",
+   "area": 0.10206,
+   "func": "(a+b)*c",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": false,
+      "node": {
+       "leaf": "c"
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "ao22",
+   "asap7": "AO22x1_ASAP7_75t_R",
+   "area": 0.13122,
+   "func": "a*b+c*d",
+   "pins": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "a"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "c"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "d"
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "maj3",
+   "asap7": "MAJx2_ASAP7_75t_R",
+   "area": 0.13122,
+   "func": "a*b+a*c+b*c",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": true,
+   "pattern": {
+    "and": [
+     {
+      "inv": false,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "and": [
+           {
+            "inv": false,
+            "node": {
+             "leaf": "a"
+            }
+           },
+           {
+            "inv": false,
+            "node": {
+             "leaf": "b"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "and": [
+           {
+            "inv": false,
+            "node": {
+             "leaf": "a"
+            }
+           },
+           {
+            "inv": false,
+            "node": {
+             "leaf": "c"
+            }
+           }
+          ]
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "c"
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "name": "maji3",
+   "asap7": "MAJIxp5_ASAP7_75t_R",
+   "area": 0.10206,
+   "func": "!(a*b+a*c+b*c)",
+   "pins": [
+    "a",
+    "b",
+    "c"
+   ],
+   "out_inv": false,
+   "pattern": {
+    "and": [
+     {
+      "inv": false,
+      "node": {
+       "and": [
+        {
+         "inv": true,
+         "node": {
+          "and": [
+           {
+            "inv": false,
+            "node": {
+             "leaf": "a"
+            }
+           },
+           {
+            "inv": false,
+            "node": {
+             "leaf": "b"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "inv": true,
+         "node": {
+          "and": [
+           {
+            "inv": false,
+            "node": {
+             "leaf": "a"
+            }
+           },
+           {
+            "inv": false,
+            "node": {
+             "leaf": "c"
+            }
+           }
+          ]
+         }
+        }
+       ]
+      }
+     },
+     {
+      "inv": true,
+      "node": {
+       "and": [
+        {
+         "inv": false,
+         "node": {
+          "leaf": "b"
+         }
+        },
+        {
+         "inv": false,
+         "node": {
+          "leaf": "c"
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

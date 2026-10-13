@@ -1,6 +1,0 @@
-$ /home/freebun/Desktop/EDA-labs/lab1/tools/abc/abc -s -c 'read "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/lib.genlib"; read_blif "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/mapped_alu4.blif"; cec "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_alu4.aig"; print_stats'
-======== ABC command line "read "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/lib.genlib"; read_blif "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/results/mapped_alu4.blif"; cec "/home/freebun/Desktop/EDA-labs/lab1/HW1_Logic/fixtures/subj_alu4.aig"; print_stats"
-Warnings: genlib library reader cannot detect the buffer gate.
-Some parts of the supergate-based technology mapper may not work correctly.
-Networks are equivalent.  Time =     0.01 sec
-[1;37mmapped_alu4                   :[0m i/o =   11/    5  lat =    0  nd =    47  edge =    114  area = 4.36  delay = 8.00  lev = 8

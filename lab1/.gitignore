@@ -2,3 +2,15 @@
 /tools/
 __pycache__/
 /HW1_Logic/results/abc.history
+
+# results
+/results
+
+# latex report aux files
+/report/*.aux
+/report/*.fls
+/report/*.log
+/report/*.out
+/report/*/xdv
+/report/*.syntex.gz
+/report/*.fdb_latexmk

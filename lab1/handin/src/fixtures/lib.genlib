@@ -1,0 +1,41 @@
+# asap7-mini: 20-gate subset of ASAP7 RVT/TT for HW1
+# areas are real (um^2); delays are nominal unit values
+
+GATE inv1 0.04374 O=!a;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE nand2 0.08748 O=!(a*b);
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE nand3 0.16038 O=!(a*b*c);
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE nor2 0.08748 O=!(a+b);
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE nor3 0.16038 O=!(a+b+c);
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE and2 0.08748 O=a*b;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE and3 0.08748 O=a*b*c;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE or2 0.08748 O=a+b;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE xor2 0.17496 O=a^b;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE xnor2 0.17496 O=!(a^b);
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE aoi21 0.11664 O=!(a*b+c);
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE aoi22 0.1458 O=!(a*b+c*d);
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE oai21 0.11664 O=!((a+b)*c);
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE oai22 0.1458 O=!((a+b)*(c+d));
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE ao21 0.08748 O=a*b+c;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE oa21 0.10206 O=(a+b)*c;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE ao22 0.13122 O=a*b+c*d;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE maj3 0.13122 O=a*b+a*c+b*c;
+PIN * UNKNOWN 1 999 1 0 1 0
+GATE maji3 0.10206 O=!(a*b+a*c+b*c);
+PIN * UNKNOWN 1 999 1 0 1 0

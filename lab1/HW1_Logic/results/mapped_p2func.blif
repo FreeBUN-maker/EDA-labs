@@ -1,7 +1,0 @@
-.model mapped_p2func
-.inputs a b c d
-.outputs f
-.gate ao21 a=d b=b c=a O=nb8
-.gate ao21 a=d b=a c=c O=nb6
-.gate and2 a=nb8 b=nb6 O=f
-.end

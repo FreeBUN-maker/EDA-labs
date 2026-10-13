@@ -105,7 +105,7 @@
 
 \clearpage
 \section{Problem 3：Tree Covering 算法}
-\subsection{(a) 算法设计思路}
+\subsection{(a) 关于 Tree Covering 算法的讨论}
 
 \begin{enumerate}[label=(\roman*)]
   \item \textbf{树上的最优性。}
@@ -114,7 +114,7 @@
   在一棵树上，各子树的最优解不受其上层节点和其他子树映射方案的影响，
   因此可以通过动态规划（DP）得到最优的树覆盖。
 
-  \item \textbf{DAG 上的共享与最优性。}
+  \item \textbf{DAG 上的最优性丢失。}
   在 DAG 上直接运行 tree covering 算法不保证得到全局最优解。
   一棵子树根节点匹配到的 pattern tree，可能覆盖其他分支也会使用的节点。
   因而各子问题之间存在共享，映射问题不再完全解耦，
@@ -125,6 +125,10 @@
   \code{inv1} 实现、再对剩余节点进行 tree covering 的总面积。
   如果对每条反相边都固定插入一个 \code{inv1}，就可能错过更便宜的局部覆盖方案。
 \end{enumerate}
+
+\subsection{(b)-(d) 算法设计}
+此部分为 Tree Covering 算法代码的实现任务，代码在 \code{src} 文件夹中，根据 \code{README.md} 文件
+中的说明可以完整复现测试结果。
 
 \vspace{1.0em}
 \section{附录：AI 使用记录}

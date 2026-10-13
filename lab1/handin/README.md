@@ -41,7 +41,7 @@ If ABC is not already installed, build a private copy of the supplied source
 (requires make, gcc, g++), then pass the resulting executable:
 
 ```sh
-bash lab1/HW1_Logic/build_abc.sh OpenROAD-flow-scripts/tools/yosys/abc
+bash lab1/HW1_Logic/build_abc.sh path/to/abc/repo
 python3 lab1/HW1_Logic/evaluate.py \
     --abc tools/abc/abc \
     --output-dir results

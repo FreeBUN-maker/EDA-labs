@@ -17,7 +17,7 @@ if [[ ! -d "$abc_source/src" || ! -f "$abc_source/Makefile" ||
 fi
 task_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 abc_source=$(cd -- "$abc_source" && pwd)
-abc_build="$task_dir/../tools/abc"
+abc_build="$task_dir/tools/abc"
 mkdir -p "$abc_build/tmp"
 cp -R "$abc_source/src" "$abc_build/"
 cp "$abc_source/Makefile" "$abc_source/arch_flags.c" \

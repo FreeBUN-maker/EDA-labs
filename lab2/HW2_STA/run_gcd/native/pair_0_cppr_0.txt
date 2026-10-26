@@ -1,0 +1,44 @@
+Startpoint: dpath.a_reg.out[13]$_DFFE_PP_
+            (rising edge-triggered flip-flop clocked by core_clock)
+Endpoint: dpath.a_reg.out[7]$_DFFE_PP_
+          (rising edge-triggered flip-flop clocked by core_clock)
+Path Group: core_clock
+Path Type: max
+
+         Delay           Time   Description
+-----------------------------------------------------------------------
+   0.000000000    0.000000000   clock core_clock (rise edge)
+   0.000000000    0.000000000   clock source latency
+   0.000000000    0.000000000 ^ clk (in)
+   0.017480750    0.017480750 ^ clkbuf_0_clk/Y (BUFx4_ASAP7_75t_R)
+   0.023925075    0.041405823 ^ clkbuf_2_3__f_clk/Y (BUFx4_ASAP7_75t_R)
+   0.000000000    0.041405823 ^ dpath.a_reg.out[13]$_DFFE_PP_/CLK (DFFHQNx1_ASAP7_75t_SL)
+   0.031967700    0.073373526 ^ dpath.a_reg.out[13]$_DFFE_PP_/QN (DFFHQNx1_ASAP7_75t_SL)
+   0.012102951    0.085476473 v _361_/Y (INVx1_ASAP7_75t_R)
+   0.069496483    0.154972956 v _563_/SN (HAxp5_ASAP7_75t_R)
+   0.019337920    0.174310878 v _324_/Y (AO21x1_ASAP7_75t_SL)
+   0.015972557    0.190283433 v _325_/Y (AO21x1_ASAP7_75t_R)
+   0.020446396    0.210729823 v _326_/Y (AO21x1_ASAP7_75t_R)
+   0.010650092    0.221379921 ^ _327_/Y (NAND2x1_ASAP7_75t_R)
+   0.032276459    0.253656387 ^ _328_/Y (OA31x2_ASAP7_75t_SL)
+   0.029580172    0.283236563 ^ _366_/Y (AND2x2_ASAP7_75t_R)
+   0.011409457    0.294646025 ^ _477_/Y (AND2x2_ASAP7_75t_SL)
+   0.015652452    0.310298473 ^ _480_/Y (OA33x2_ASAP7_75t_SL)
+   0.000000000    0.310298473 ^ dpath.a_reg.out[7]$_DFFE_PP_/D (DFFHQNx1_ASAP7_75t_SL)
+                  0.310298473   data arrival time
+
+   0.280000001    0.280000001   clock core_clock (rise edge)
+   0.000000000    0.280000001   clock source latency
+   0.000000000    0.280000001 ^ clk (in)
+   0.013853197    0.293853194 ^ clkbuf_0_clk/Y (BUFx4_ASAP7_75t_R)
+   0.018531121    0.312384307 ^ clkbuf_2_0__f_clk/Y (BUFx4_ASAP7_75t_R)
+   0.000000000    0.312384307 ^ dpath.a_reg.out[7]$_DFFE_PP_/CLK (DFFHQNx1_ASAP7_75t_SL)
+  -0.005306949    0.307077378   library setup time
+                  0.307077378   data required time
+-----------------------------------------------------------------------
+                  0.307077378   data required time
+                 -0.310298473   data arrival time
+-----------------------------------------------------------------------
+                 -0.003221090   slack (VIOLATED)
+
+

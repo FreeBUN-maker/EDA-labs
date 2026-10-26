@@ -1,0 +1,17 @@
+所比较的三对路径为：
+\begin{itemize}
+\item P1：\code{dpath.a_reg.out[13]$_DFFE_PP_/QN} $\to$ \code{dpath.a_reg.out[7]$_DFFE_PP_/D}。
+\item P2：\code{dpath.a_reg.out[7]$_DFFE_PP_/QN} $\to$ \code{dpath.b_reg.out[5]$_DFFE_PP_/D}。
+\item P3：\code{dpath.a_reg.out[9]$_DFFE_PP_/QN} $\to$ \code{dpath.b_reg.out[5]$_DFFE_PP_/D}。
+\end{itemize}
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+路径 & 本实现 CPPR / ns & OpenSTA CPPR / ns & 绝对误差 / ns \\
+\midrule
+P1 & 0.003627541 & 0.003627542 & 5.04e-10 \\
+P2 & 0.009021508 & 0.009021506 & 1.67e-09 \\
+P3 & 0.003627541 & 0.003627542 & 5.04e-10 \\
+\bottomrule
+\end{tabular}
+\end{center}

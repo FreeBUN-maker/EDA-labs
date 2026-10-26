@@ -1,0 +1,10 @@
+{
+  "python": "3.9.6",
+  "platform": "macOS-26.4-arm64-arm-64bit",
+  "openroad_commit": "41a28926b92c5c20f41f89e90222a95a820384d2",
+  "opensta_commit": "779d47250b65b121ad22c70eb42e242292f9babf",
+  "sta_executable": "/Users/tongbinzhao/Desktop/Tools/opensta-env/bin/sta",
+  "xelatex_executable": "/Users/tongbinzhao/Desktop/Tools/TinyTeX/bin/universal-darwin/xelatex",
+  "execution_date": "2026-10-25",
+  "timezone": "Asia/Shanghai"
+}

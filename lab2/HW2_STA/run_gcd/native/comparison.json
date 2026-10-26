@@ -1,0 +1,50 @@
+{
+  "period": 0.28,
+  "early_derate": 0.9,
+  "late_derate": 1.1,
+  "changed_endpoint": {
+    "endpoint": "dpath.b_reg.out[5]$_DFFE_PP_/D",
+    "before_launch": "dpath.a_reg.out[7]$_DFFE_PP_/QN",
+    "before_slack": -0.005704594270991237,
+    "after_launch": "dpath.a_reg.out[9]$_DFFE_PP_/QN",
+    "after_slack": 0.0013542821290766227
+  },
+  "pairs": [
+    {
+      "launch": "dpath.a_reg.out[13]$_DFFE_PP_/QN",
+      "endpoint": "dpath.a_reg.out[7]$_DFFE_PP_/D",
+      "common_pin": "clkbuf_0_clk/Y",
+      "native_common_pin": "clkbuf_0_clk/Y",
+      "scalar_cppr": 0.0036275414963538033,
+      "native_cppr": 0.003627542,
+      "native_slack_before": -0.00322109,
+      "native_slack_after": 0.000406453,
+      "credit_error": 5.036461967963812e-10,
+      "passed": true
+    },
+    {
+      "launch": "dpath.a_reg.out[7]$_DFFE_PP_/QN",
+      "endpoint": "dpath.b_reg.out[5]$_DFFE_PP_/D",
+      "common_pin": "clkbuf_2_0__f_clk/Y",
+      "native_common_pin": "clkbuf_2_0__f_clk/Y",
+      "scalar_cppr": 0.009021507672846155,
+      "native_cppr": 0.009021506,
+      "native_slack_before": 0.012173984,
+      "native_slack_after": 0.02119549,
+      "credit_error": -1.6728461550014062e-09,
+      "passed": true
+    },
+    {
+      "launch": "dpath.a_reg.out[9]$_DFFE_PP_/QN",
+      "endpoint": "dpath.b_reg.out[5]$_DFFE_PP_/D",
+      "common_pin": "clkbuf_0_clk/Y",
+      "native_common_pin": "clkbuf_0_clk/Y",
+      "scalar_cppr": 0.0036275414963538033,
+      "native_cppr": 0.003627542,
+      "native_slack_before": 0.015551894,
+      "native_slack_after": 0.019179435,
+      "credit_error": 5.036461967963812e-10,
+      "passed": true
+    }
+  ]
+}

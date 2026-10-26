@@ -1,0 +1,19 @@
+CPPR 前：\code{dpath.a_reg.out[13]$_DFFE_PP_/QN} $\longrightarrow$ \code{dpath.a_reg.out[7]$_DFFE_PP_/D}。
+
+CPPR 后：\code{dpath.a_reg.out[13]$_DFFE_PP_/QN} $\longrightarrow$ \code{dpath.a_reg.out[7]$_DFFE_PP_/D}。
+
+两次全局最坏路径在本例中相同，完整的数据引脚序列如下：
+\begin{lstlisting}[style=script,language={},numbers=none]
+dpath.a_reg.out[13]$_DFFE_PP_/QN
+ -> _361_/A -> _361_/Y
+ -> _563_/B -> _563_/SN
+ -> _324_/B -> _324_/Y
+ -> _325_/A2 -> _325_/Y
+ -> _326_/A2 -> _326_/Y
+ -> _327_/B -> _327_/Y
+ -> _328_/B1 -> _328_/Y
+ -> _366_/A -> _366_/Y
+ -> _477_/A -> _477_/Y
+ -> _480_/B1 -> _480_/Y
+ -> dpath.a_reg.out[7]$_DFFE_PP_/D
+\end{lstlisting}

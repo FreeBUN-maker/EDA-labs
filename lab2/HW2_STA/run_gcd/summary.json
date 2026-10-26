@@ -1,8 +1,0 @@
-{
-  "data_nodes": 1221,
-  "clock_nodes": 46,
-  "launches": 70,
-  "endpoints": 35,
-  "reachable_pairs": 1199,
-  "changed_endpoints": 10
-}

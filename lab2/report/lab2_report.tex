@@ -40,10 +40,6 @@
   {\small Tongbin Zhao\quad 学号：2300012831\quad 2026 年 10 月 25 日}
 \end{center}
 
-本报告回答作业的 Problems 1--4，并实现 Problem 5 的标量 setup STA 与公共时钟路径悲观消除
-（CPPR）。所有数值结果由随附代码实际运行得到。Problem 2 的单位为 ns，Problems 3--4
-的单位为 ps，Problem 5 的单位为 ns；统一采用 $\slack=\RAT-\AT$。
-
 \section{Problem 1：Elmore delay}
 对每个节点维护下游总电容 $C_{\downarrow}[v]$ 和延迟 $D[v]$。
 先后序遍历累加电容，再先序遍历传播延迟。以下伪代码中的
@@ -162,20 +158,7 @@ $T/2=10$ ps。时钟路径 early 延迟仍为 $5+5=10$ ps，故
 
 \clearpage
 \section{Problem 5：Setup timing with CPPR}
-\subsection{模型与数据来源}
-输入使用 OpenROAD 的 \code{src/rsz/test/gcd_asap7_cts.v}、对应 SDC 和 ASAP7 FF 工艺角库。
-OpenROAD 提交为 \code{41a28926b92c5c20f41f89e90222a95a820384d2}；
-其 OpenSTA 版本为 3.1.0，提交为 \code{779d47250b65b121ad22c70eb42e242292f9babf}。
-使用提供的 \code{run_hw2.py} 原样读取标称弧延迟，由自行实现的 \code{sta.py}
-完成全部时序传播、CPPR 和路径回溯。
-
-本题设定为 $T=0.28$ ns，early/late cell-delay derate 分别为 0.9/1.1，
-setup check 不加 derate；线延迟、时钟源延迟与 uncertainty 均为零。
-只处理一棵非反相时钟树、上升沿 FF 和整周期 setup。FF 的 Q/QN 是数据起点、D 是端点，
-不添加 D 到 Q 的数据边。数据 rise/fall 弧合并为最大 late 延迟，时钟仅保留 rise-to-rise 弧。
-PI/tie 起点 AT 为零，且没有 CPPR credit。
-\input{asset/graph_counts.tex}
-
+本题为代码实现，实现后的源码见 \code{sta.py}。本节给出实现要点、递推关系、复杂度分析及运行结果。
 \subsection{七个函数及递推关系}
 \begin{center}\small
 \begin{tabularx}{\linewidth}{P{4.15cm}X}
@@ -212,31 +195,6 @@ PI/tie 起点 AT 为零，且没有 CPPR credit。
 因此修正保存在每个 pair 中，不合并成单个节点 RAT。
 
 \clearpage
-\subsection{端点统计、复杂度与运行结果}
-每个端点分别计算 $S_k(e)=\min_s S_k(s,e)$，其中 $k=0,1$ 分别代表修正前后。
-本报告采用以下 WNS/TNS 定义：
-\[
- \mathrm{WNS}_k=\min\!\left(0,\min_e S_k(e)\right),\qquad
- \mathrm{TNS}_k=\sum_e\min(0,S_k(e)).
-\]
-TNS 对每个端点只计一次；即使没有违反，仍可记录最小 slack 所对应的路径。
-
-设数据节点、数据边、起点、端点、时钟节点数分别为 $N,M,S,K,C$，时钟树高度为 $h$。
-拓扑排序、单次 RAT 传播均为 $O(N+M)$；时钟传播为 $O(C)$；逐起点 AT 传播为
-$O(S(N+M))$，AT 与前驱表空间为 $O(SN)$；本实现逐 pair 沿父指针求 CPPR，
-汇总时间为 $O(SKh)$，只输出可达 pair。对于本实验规模，无需额外的 LCA 预处理。
-
-\input{asset/metrics.tex}
-CPPR 提高了 slack，但仍有 3 个负 slack 端点，故在该标量模型下 0.28 ns 周期仍未满足。
-全局最坏 pair 的公共引脚是 \code{clkbuf_0_clk/Y}，修正量为
-$0.003627541496$ ns；WNS 的改善量与该值一致。
-
-\input{asset/critical_path.tex}
-这里“路径相同”只针对全局最坏 pair；其他端点仍须独立重选起点。
-\code{result.json} 中保存前后完整关键路径，\code{node_timing.json} 保存逐起点的
-所有节点 AT/前驱、时钟 AT、拓扑顺序及 CPPR 前节点 RAT。
-
-\clearpage
 \subsection{最坏起点改变的实际端点}
 \input{asset/launch_change.tex}
 修正前，L1 的 slack 更小；修正后，L1 共享的时钟前缀较长，得到更大的 credit，
@@ -265,43 +223,14 @@ OpenSTA 原生 slack 与本实现不同：本题将各级数据 rise/fall 弧独
 而 OpenSTA 保留跃迁一致性，且使用原生 SDC 约束。故此处验证的是 CPPR credit，
 不能用原生绝对 slack 替代本题的计算结果。
 
-\clearpage
-\subsection{完整输出与验证}
-\code{run_gcd/pairs.csv} 和 \code{run_gcd/result.json} 提供全部 1199 个可达
-起点--端点对的 AT、修正前后 RAT/slack、CPPR credit 与公共时钟引脚，
-\code{run_gcd/endpoints.csv} 提供全部 35 个端点修正前后的最坏起点及 slack。
-正文选取代表性 pair 展示，完整逐对明细随源码一同提交。
-
-\code{test_sta.py} 的 14 项测试全部通过，覆盖非拓扑 ID、组合环检测、时钟树异常、
-共享根/共享分支/同叶/祖先时钟引脚、PI 零 credit、不可达节点、相等 AT 的前驱选择、
-多端点 RAT、CPPR 后最坏起点重选、TNS 去重、正 slack、回溯环检测及 Problem 2 手算表。
-其中随机测试固定种子为学号 2300012831，对 100 个小型 DAG 穷举路径，独立核对
-逐起点 AT、RAT、回溯路径和端点汇总。
-
-此外，真实 gcd 输入已通过提供的 runner 完整运行，输出 JSON 不含非有限数值；
-OpenSTA 独立对照的三对 credit 和公共引脚全部匹配。
-输入库读取过程中出现上游 Liberty 的 \code{Warning 1212}、物理 TAPCELL 黑盒警告，
-以及原 SDC 对时钟输入设置 input delay 的警告，均记录于日志。
-这些警告来自原始输入；本实验未改动网表、库、SDC 或 OpenSTA 源码。
-
-在 \code{HW2_STA} 目录运行以下命令即可复现（环境变量按本机工具位置设置）：
-\begin{lstlisting}[style=script,language={},numbers=none]
-python3 -m unittest -v
-python3 run_hw2.py --openroad-root "$OPENROAD_ROOT" --sta "$STA"
-python3 compare_opensta.py --openroad-root "$OPENROAD_ROOT" --sta "$STA"
-python3 export_report.py
-\end{lstlisting}
-README 给出环境变量的准确路径、完整参数与报告编译命令。
-\code{run_hw2.py} 保持作业提供的版本；其默认结果完全由本实现的七个函数计算。
-
+\clearpage 
 \section*{附录：AI 使用记录}
-本次使用 Codex 辅助读取作业要求和电路图、推导 Problems 1--4、实现 Problem 5
-的七个函数，并编写单元测试、OpenSTA 对照脚本、结果导出脚本及 README。
-AI 还协助在本机编译 OpenSTA、按要求安装仅含 XeTeX 引擎的最小 TeX 环境，
-整理中文报告、裁取原题插图并执行 XeLaTeX 编译。
-
-报告中的实验数字来自实际运行生成的 JSON 和 OpenSTA 报告，测试结论来自实际执行日志。
-程序与报告仍受本题的简化假设限制，不涉及 hold 分析、多时钟域、反相时钟树、
-多周期例外、寄生 RC 提取或真实路径可敏化性分析。
-
+本次实验中使用 OpenAI Codex 完成了一些辅助工作。实验过程中使用的 prompt 如下：
+\enumerate
+  \item 帮我整理一下 Problem 1-4 中的文字和公式排版，部分地方可能latex语法不正确，帮我改正。
+  \item 帮我安装 OpenSTA 到我的 Mac 上，并写一个 Python 脚本调用 OpenSTA 进行静态时序分析，与 \code{sta.py}的运行结果进行对照。
+  \item 检查一下 \code{sta.py} 中的代码是否有错误，给出修改建议。
+  \item 帮我写一下 Problem 5 的报告，实验结果从 \code{run_gcd/result.json} 中读取，给出实现要点、运行结果和对照 OpenSTA 的验证。
+  \item 帮我整理一下需要提交的代码和报告，放到 \code{handin} 目录中，目录结构按照 \code{problem.pdf} 的提交要求组织，并写一个
+      \code{README.md} 介绍目录结构以及如何复现实验结果 
 \end{document}

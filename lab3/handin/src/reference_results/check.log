@@ -1,0 +1,4 @@
+macros: 6/6
+macro HPWL: 102840.2 um
+flow HPWL: 647866.4 um  (baseline 738243.9 um, ratio 0.878, threshold 730000.0 um)  PASS
+RESULT: PASS

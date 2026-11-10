@@ -1,0 +1,11 @@
+OpenROAD 26Q3-1985-gc3e680b01b 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+design=soc_core macros=6 macro_nets=127 core=(2.3, 2.72, 2680.88, 3484.32)
+  iter  20000  cost 102840.2  T 1657.2  4.0s
+  iter  40000  cost 102840.2  T 549.3  8.0s
+  iter  60000  cost 102840.2  T 182.1  12.1s
+  iter  80000  cost 102840.2  T 60.3  16.2s
+macro_hpwl=102840.2 um  packed=2249.7x2994.4 um  wrote /work/hw3_run/macro_placement.json and macro_placement.tcl
+elapsed 20.3s

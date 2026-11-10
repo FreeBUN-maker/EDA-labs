@@ -1,0 +1,136 @@
+{
+  "allowed_area_um2": [
+    2508655.56642,
+    3066134.58118
+  ],
+  "balanced_splits": [
+    {
+      "a": [
+        "RAM.genblk1\\[0\\].RAM",
+        "RAM.genblk1\\[1\\].RAM"
+      ],
+      "area_a_um2": 3028374.0984,
+      "area_b_um2": 2546416.0492,
+      "b": [
+        "RAM.genblk1\\[2\\].RAM",
+        "ahb_sys_0_uut.S0.CACHE",
+        "ahb_sys_0_uut.apb_sys_inst_0",
+        "ibex_core"
+      ],
+      "cut": 47
+    },
+    {
+      "a": [
+        "RAM.genblk1\\[0\\].RAM",
+        "RAM.genblk1\\[2\\].RAM"
+      ],
+      "area_a_um2": 3028374.0984,
+      "area_b_um2": 2546416.0492,
+      "b": [
+        "RAM.genblk1\\[1\\].RAM",
+        "ahb_sys_0_uut.S0.CACHE",
+        "ahb_sys_0_uut.apb_sys_inst_0",
+        "ibex_core"
+      ],
+      "cut": 47
+    },
+    {
+      "a": [
+        "RAM.genblk1\\[0\\].RAM",
+        "ahb_sys_0_uut.S0.CACHE",
+        "ahb_sys_0_uut.apb_sys_inst_0",
+        "ibex_core"
+      ],
+      "area_a_um2": 2546416.0492000002,
+      "area_b_um2": 3028374.0983999996,
+      "b": [
+        "RAM.genblk1\\[1\\].RAM",
+        "RAM.genblk1\\[2\\].RAM"
+      ],
+      "cut": 47
+    }
+  ],
+  "half_area_um2": 2787395.0738,
+  "incidence_groups": [
+    {
+      "count": 46,
+      "macros": [
+        "RAM.genblk1\\[0\\].RAM",
+        "RAM.genblk1\\[1\\].RAM",
+        "RAM.genblk1\\[2\\].RAM"
+      ]
+    },
+    {
+      "count": 1,
+      "macros": [
+        "RAM.genblk1\\[0\\].RAM",
+        "RAM.genblk1\\[1\\].RAM",
+        "RAM.genblk1\\[2\\].RAM",
+        "ahb_sys_0_uut.S0.CACHE",
+        "ahb_sys_0_uut.apb_sys_inst_0",
+        "ibex_core"
+      ]
+    },
+    {
+      "count": 25,
+      "macros": [
+        "ahb_sys_0_uut.S0.CACHE",
+        "ahb_sys_0_uut.apb_sys_inst_0",
+        "ibex_core"
+      ]
+    },
+    {
+      "count": 55,
+      "macros": [
+        "ahb_sys_0_uut.apb_sys_inst_0",
+        "ibex_core"
+      ]
+    }
+  ],
+  "macros": [
+    {
+      "area_um2": 1514187.0492,
+      "h": 1389.36,
+      "master": "DFFRAM_4K",
+      "name": "RAM.genblk1\\[0\\].RAM",
+      "w": 1089.845
+    },
+    {
+      "area_um2": 1514187.0492,
+      "h": 1389.36,
+      "master": "DFFRAM_4K",
+      "name": "RAM.genblk1\\[1\\].RAM",
+      "w": 1089.845
+    },
+    {
+      "area_um2": 1514187.0492,
+      "h": 1389.36,
+      "master": "DFFRAM_4K",
+      "name": "RAM.genblk1\\[2\\].RAM",
+      "w": 1089.845
+    },
+    {
+      "area_um2": 238566.0,
+      "h": 600.0,
+      "master": "DMC_32x16HC",
+      "name": "ahb_sys_0_uut.S0.CACHE",
+      "w": 397.61
+    },
+    {
+      "area_um2": 313663.0,
+      "h": 700.0,
+      "master": "apb_sys_0",
+      "name": "ahb_sys_0_uut.apb_sys_inst_0",
+      "w": 448.09
+    },
+    {
+      "area_um2": 480000.0,
+      "h": 800.0,
+      "master": "ibex_wrapper",
+      "name": "ibex_core",
+      "w": 600.0
+    }
+  ],
+  "net_count": 127,
+  "total_area_um2": 5574790.1476
+}

@@ -1,0 +1,61 @@
+{
+ "core": [
+  2.3,
+  2.72,
+  2680.88,
+  3484.32
+ ],
+ "design": "soc_core",
+ "halo_um": 35.0,
+ "macro_hpwl_um": 102840.185,
+ "macros": {
+  "RAM.genblk1\\[0\\].RAM": {
+   "orient": "MX",
+   "x": 7.3,
+   "y": 1577.72
+  },
+  "RAM.genblk1\\[1\\].RAM": {
+   "orient": "R180",
+   "x": 1132.145,
+   "y": 1577.72
+  },
+  "RAM.genblk1\\[2\\].RAM": {
+   "orient": "MY",
+   "x": 923.0,
+   "y": 7.72
+  },
+  "ahb_sys_0_uut.S0.CACHE": {
+   "orient": "MX",
+   "x": 490.39,
+   "y": 842.72
+  },
+  "ahb_sys_0_uut.apb_sys_inst_0": {
+   "orient": "MY",
+   "x": 7.3,
+   "y": 842.72
+  },
+  "ibex_core": {
+   "orient": "MX",
+   "x": 7.3,
+   "y": 7.72
+  }
+ },
+ "negative_sequence": [
+  "RAM.genblk1\\[0\\].RAM",
+  "RAM.genblk1\\[1\\].RAM",
+  "ahb_sys_0_uut.apb_sys_inst_0",
+  "ahb_sys_0_uut.S0.CACHE",
+  "ibex_core",
+  "RAM.genblk1\\[2\\].RAM"
+ ],
+ "packed_height_um": 2994.36,
+ "packed_width_um": 2249.69,
+ "positive_sequence": [
+  "ibex_core",
+  "ahb_sys_0_uut.apb_sys_inst_0",
+  "ahb_sys_0_uut.S0.CACHE",
+  "RAM.genblk1\\[2\\].RAM",
+  "RAM.genblk1\\[0\\].RAM",
+  "RAM.genblk1\\[1\\].RAM"
+ ]
+}

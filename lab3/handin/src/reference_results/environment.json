@@ -1,0 +1,7 @@
+{
+  "openroad_version": "26Q3-1985-gc3e680b01b",
+  "runner_python": "3.10.12 (main, Aug 31 2026, 10:18:17) [GCC 11.4.0]",
+  "orfs_root": "/OpenROAD-flow-scripts",
+  "orfs_revision": "5b87982c613347c3ce03341648654f1e8a8f040e",
+  "container_image": "openroad/orfs@sha256:d031d85bcf8992f59a693fd3586d0113a5c2f5f79edc54b46dbadcbe47d98b74"
+}

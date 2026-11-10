@@ -1,0 +1,13 @@
+{
+ "baseline_hpwl_um": 738243.9,
+ "design": "sky130hd/chameleon",
+ "flow_exit": 0,
+ "flow_hpwl_um": 647866.4,
+ "macro_hpwl_um": 102840.185,
+ "openroad": "/OpenROAD-flow-scripts/tools/install/OpenROAD/bin/openroad",
+ "original_hpwl_um": 649377.9,
+ "pass": true,
+ "ratio_to_baseline": 0.8775777219425721,
+ "runtime_s": 19.9,
+ "threshold_um": 730000.0
+}

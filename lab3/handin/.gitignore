@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+hw3_run/
+docker_run.log
+theory_results.json

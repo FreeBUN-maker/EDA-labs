@@ -1,0 +1,8 @@
+{
+  "seed": 0,
+  "iters": 100000,
+  "elapsed_s": 20.262404918670654,
+  "halo_um": 35.0,
+  "core_margin_um": 5.0,
+  "objective": "(macro_hpwl + overflow_penalty, packed_area)"
+}
